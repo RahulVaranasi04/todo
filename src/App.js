@@ -5,7 +5,7 @@ function App() {
   const [taskList, setTaskList] = useState([]);
   const [todoItem, setTodoItem] = useState('');
 
-  // Load tasks from localStorage on component mount
+
   useEffect(() => {
     const savedTasks = localStorage.getItem('task');
     if (savedTasks) {
@@ -16,24 +16,24 @@ function App() {
   const addTask = (e) => {
     e.preventDefault();
     
-    // Prevent adding empty tasks
+
     if (!todoItem.trim()) return;
 
-    // Create new task object
+
     const newTask = {
       id: taskList.length,
       name: todoItem,
       completed: false
     };
 
-    // Update task list
+
     const updatedTasks = [...taskList, newTask];
     setTaskList(updatedTasks);
     
-    // Save to localStorage
+
     localStorage.setItem('task', JSON.stringify(updatedTasks));
     
-    // Reset input
+
     setTodoItem('');
   };
 
@@ -50,7 +50,7 @@ function App() {
         : task
     );
 
-    // Reorder tasks to move completed tasks to the end
+
     const sortedTasks = updatedTasks.sort((a, b) => 
       a.completed === b.completed ? 0 : (a.completed ? 1 : -1)
     );
